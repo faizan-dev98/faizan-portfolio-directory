@@ -1,0 +1,11 @@
+{
+  "name": "ui-directory-gallery",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/generate-gallery.mjs",
+    "dev": "node scripts/generate-gallery.mjs && node scripts/serve.mjs",
+    "start": "node scripts/serve.mjs"
+  }
+}

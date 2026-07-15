@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <meta
+      name="description"
+      content="Browse a curated directory of landing pages, hero sections, components, portfolios, animations, and 3D UI experiments."
+    />
+    <meta name="theme-color" content="#e5e5e0" />
+    <title>UI Directory — Design Experiments</title>
+    <link rel="stylesheet" href="gallery.css" />
+    <link rel="stylesheet" href="portfolio-theme.css" />
+  </head>
+  <body>
+    <nav class="portfolio-nav" id="portfolioNav" aria-label="Portfolio navigation" aria-hidden="true">
+      <div class="portfolio-nav-links">
+        <a href="https://faizan-ali-dev.vercel.app/#home">Home</a>
+        <a href="https://faizan-ali-dev.vercel.app/#services">Services</a>
+        <a href="https://faizan-ali-dev.vercel.app/#about">About</a>
+        <a href="https://faizan-ali-dev.vercel.app/#work">Work</a>
+        <a href="https://faizan-ali-dev.vercel.app/#contact">Contact</a>
+      </div>
+      <div class="portfolio-nav-contact">
+        <div>
+          <p>E-mail</p>
+          <a class="nav-email" href="mailto:faizan.a1998@outlook.com">faizan.a1998@outlook.com</a>
+        </div>
+        <div>
+          <p>Social Media</p>
+          <div class="nav-socials">
+            <a href="https://www.linkedin.com/in/faizan-ali-1157a839a/" target="_blank" rel="noreferrer">{ LinkedIn }</a>
+            <a href="https://github.com/faizankhan63" target="_blank" rel="noreferrer">{ GitHub }</a>
+            <a href="mailto:faizan.a1998@outlook.com">{ Email }</a>
+            <a href="https://faizan-ali-dev.vercel.app/faizan_ali_CV.pdf" target="_blank" rel="noreferrer">{ Resume }</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <button
+      class="portfolio-menu-button"
+      id="portfolioMenuButton"
+      type="button"
+      aria-label="Open menu"
+      aria-expanded="false"
+      aria-controls="portfolioNav"
+    >
+      <span></span>
+      <span></span>
+    </button>
+
+    <div class="page-shell" id="home">
+      <aside class="sidebar" aria-label="Gallery filters">
+        <div class="sidebar-inner">
+          <label class="search">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="11" cy="11" r="7"></circle>
+              <path d="m20 20-4-4"></path>
+            </svg>
+            <input id="searchInput" type="search" placeholder="Search projects..." autocomplete="off" />
+            <kbd>/</kbd>
+          </label>
+
+          <div class="filter-heading">Categories</div>
+          <nav class="category-list" id="categoryList"></nav>
+
+          <div class="sidebar-note">
+            <span class="pulse" aria-hidden="true"></span>
+            <p>Every project includes a video preview and build details.</p>
+          </div>
+        </div>
+      </aside>
+
+      <main class="main-content" id="gallery">
+        <section class="intro">
+          <div class="portfolio-tags">
+            <span>UI Experiments</span><i></i>
+            <span>Web Interfaces</span><i></i>
+            <span>Design Archive</span>
+          </div>
+          <div class="intro-row">
+            <h1>UI Directory</h1>
+            <p>
+              A curated collection of landing pages, components, portfolios, and motion
+              experiments—built to turn visual ideas into polished digital experiences.
+            </p>
+          </div>
+        </section>
+
+        <section class="results-head" aria-live="polite">
+          <div>
+            <span class="active-category" id="activeCategory">All projects</span>
+            <span class="result-count" id="resultCount"></span>
+          </div>
+          <button class="sort-button" id="sortButton" type="button">
+            <span>Sort: A–Z</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 10 4 4 4-4"></path></svg>
+          </button>
+        </section>
+
+        <div class="project-grid" id="projectGrid"></div>
+        <div class="empty-state" id="emptyState" hidden>
+          <span>0 results</span>
+          <h2>No projects found.</h2>
+          <p>Try another search or choose a different category.</p>
+          <button id="clearFilters" type="button">Clear filters</button>
+        </div>
+        <div class="load-more-wrap" id="loadMoreWrap" hidden>
+          <button class="load-more" id="loadMore" type="button">Load more projects</button>
+        </div>
+      </main>
+    </div>
+
+    <dialog class="demo-modal" id="demoModal">
+      <div class="modal-panel">
+        <button class="modal-close" id="modalClose" type="button" aria-label="Close demo">×</button>
+        <div class="modal-media">
+          <video id="modalVideo" controls playsinline preload="metadata"></video>
+        </div>
+        <div class="modal-copy">
+          <div>
+            <span class="modal-category" id="modalCategory"></span>
+            <h2 id="modalTitle"></h2>
+          </div>
+          <p id="modalDescription"></p>
+          <div class="modal-footer">
+            <div class="stack-list" id="modalStack"></div>
+            <a
+              class="open-design"
+              id="openDesign"
+              target="_blank"
+              rel="noreferrer"
+              hidden
+            >
+              Open design <span>↗</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </dialog>
+
+    <template id="projectTemplate">
+      <article class="project-card">
+        <div class="preview-button">
+          <video class="card-video" muted loop playsinline preload="none"></video>
+          <img class="card-poster" alt="" loading="lazy" />
+          <span class="preview-overlay">
+            <span class="play-icon">▶</span>
+            <span>View demo</span>
+          </span>
+        </div>
+        <div class="card-info">
+          <div class="card-title-row">
+            <h2 class="card-title"></h2>
+            <span class="card-arrow" aria-hidden="true">↗</span>
+          </div>
+          <p class="card-description"></p>
+          <div class="card-meta">
+            <span class="category-chip"></span>
+            <span class="stack"></span>
+          </div>
+        </div>
+      </article>
+    </template>
+
+    <script src="gallery-data.js"></script>
+    <script src="gallery.js"></script>
+  </body>
+</html>
